@@ -61,7 +61,7 @@ object CssInliner {
         elem attribute "id" exists { case Text(x) => x == id; case _ => false }
 
       case AttributeSelector(name, attrs) =>
-        ???
+        throw new Exception("Attribute CSS selectors not supported yet.")
 
       case ComplexSelector(firstPart, parts) =>
         (firstPart forall { part => selectorMatchesElem(part, elem) }) &&
@@ -74,11 +74,12 @@ object CssInliner {
               case _ =>
                 false
             }
-            case PseudoSelectorPart(pseudoClass, param) => ???
+            case PseudoSelectorPart(pseudoClass, param) => 
+              throw new Exception("Pseudo CSS selectors not supported yet.")
           })
 
       case MultipleSelector(firstSelector, selectors) =>
-        ???
+        throw new Exception("Multiple CSS selectors e.g. 'div div' not supported yet.")
 
       case _ =>
         false
