@@ -1,8 +1,8 @@
 package no.vedaadata.css
 
 import cssparse.Ast._
-import cssparse.{CssRulesParser, PrettyPrinter}
-import fastparse.core.Parsed
+import cssparse._
+import fastparse._
 
 import scala.xml._
 
@@ -10,37 +10,34 @@ object CssInliner {
 
   def apply(css: String) = {
 
-    val parser = CssRulesParser.stylesheet
+//    val parser = CssRulesParser.stylesheet
 
-    val res = parser parse css
+    val res = parse(css, CssRulesParser.ruleList(_))
 
     //    println(res)
 
     res match {
       case Parsed.Success(value, index) =>
         value.rules foreach {
-          case Left(rule) => rule match {
-            case QualifiedRule(selector, block) =>
-              selector match {
-                case Left(value) =>
-                //                  println(value)
-                //                  println(PrettyPrinter.printDeclarationList(block, 0, false).trim)
-                case _ => ???
-              }
-            case _ => ???
-          }
-          case Right(x) => println(x)
-        }
+          case QualifiedRule(selector, block) =>
+            selector match {
+              case Left(value) =>
+              //                  println(value)
+              //                  println(PrettyPrinter.printDeclarationList(block, 0, false).trim)
+              case _ => ???
+            }
+          case _ => ???
+        }        
       case _ => ???
     }
   }
 
   def inline(xhtml: Elem, css: String): Elem = {
 
-    val selectorDeclarations = CssRulesParser.stylesheet parse css match {
+    val selectorDeclarations = parse(css, CssRulesParser.ruleList(_)) match {
       case Parsed.Success(value, _) =>
         value.rules collect {
-          case Left(QualifiedRule(Left(selector), block)) => (selector, block)
+          case QualifiedRule(Left(selector), block) => (selector, block)
         }
       case _ => Nil
     }

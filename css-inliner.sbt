@@ -6,9 +6,9 @@ version := "1.0-SNAPSHOT"
 
 scalaVersion := "2.11.8"
 
-crossScalaVersions := Seq("2.11.7", "2.12.1")
+crossScalaVersions := Seq("2.11.12", "2.12.10")
 
-libraryDependencies += "com.lihaoyi" %% "cssparse" % "0.4.3"
+libraryDependencies += "com.lihaoyi" %% "cssparse" % "2.1.2"
 
 // add scala-xml dependency when needed (for Scala 2.11 and newer) in a robust way
 // this mechanism supports cross-version publishing

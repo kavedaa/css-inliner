@@ -3,6 +3,9 @@
 *.log
 *.properties
 
+.bloop/
+.metals/
+
 # sbt specific
 .cache-main
 .cache/
