@@ -6,6 +6,8 @@
 .bloop/
 .metals/
 
+.vscode
+
 # sbt specific
 .cache-main
 .cache/

@@ -120,7 +120,7 @@ abstract class Transformer {
 class NodeTransformer(val pfs: PartialFunction[Node, NodeSeq]*) extends Transformer
 
 trait Traversive extends Transformer {
-  val traverser = new NodeTransformer({ case elem: Elem => elem copy (child = elem.child map transform flatten) })
+  val traverser = new NodeTransformer({ case elem: Elem => elem.copy(child = elem.child.map(transform).flatten) })
 
-  override def transform(node: Node): NodeSeq = super.transform(node) map traverser.transform flatten
+  override def transform(node: Node): NodeSeq = super.transform(node).map(traverser.transform).flatten
 }
