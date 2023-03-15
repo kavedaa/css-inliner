@@ -1,8 +1,9 @@
 package no.vedaadata.css
 
-import org.scalatest._
+import org.scalatest.funsuite._
+import org.scalatest.matchers.should._
 
-class CssInlinerTest extends FunSuite with Matchers {
+class CssInlinerTest extends AnyFunSuite with Matchers {
 
   //  Selectors
 

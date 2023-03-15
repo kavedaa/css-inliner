@@ -4,7 +4,7 @@ import cssparse.Ast._
 import cssparse._
 import fastparse._
 
-import scala.xml._
+import scala.xml.{ Elem, Node, NodeSeq, Text, UnprefixedAttribute }
 
 object CssInliner {
 
@@ -77,9 +77,6 @@ object CssInliner {
 
       case MultipleSelector(firstSelector, selectors) =>
         throw new Exception("Multiple CSS selectors e.g. 'div div' not supported yet.")
-
-      case _ =>
-        false
     }
 
     val transformation: PartialFunction[Node, NodeSeq] = {
@@ -100,7 +97,6 @@ object CssInliner {
         case elem: Elem => elem
         case _ => throw new Exception("Unexpected result of transformation.")
       }
-      case _ => throw new Exception("Unexpected result of transformation.")
     }
   }
 

@@ -1,10 +1,7 @@
-*.class
-*.bak
-*.log
-*.properties
 
 .bloop/
 .metals/
+.bsp/
 
 .vscode
 
